@@ -24,29 +24,48 @@ class CheckNationalCode {
             "9999999999"
     )
 
+    fun convertFaNumberToEN(strNumber: String): String? {
+        var strNumber = strNumber
+        val persianNumber = arrayOf("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹")
+        strNumber = strNumber.replace(persianNumber[0], "0")
+        strNumber = strNumber.replace(persianNumber[1], "1")
+        strNumber = strNumber.replace(persianNumber[2], "2")
+        strNumber = strNumber.replace(persianNumber[3], "3")
+        strNumber = strNumber.replace(persianNumber[4], "4")
+        strNumber = strNumber.replace(persianNumber[5], "5")
+        strNumber = strNumber.replace(persianNumber[6], "6")
+        strNumber = strNumber.replace(persianNumber[7], "7")
+        strNumber = strNumber.replace(persianNumber[8], "8")
+        strNumber = strNumber.replace(persianNumber[9], "9")
+
+        return strNumber
+    }
+
     fun checkNationalCode(nationalCode: String?): Boolean {
-        if (nationalCode == null) {
+        var nationalCodeEn = nationalCode?.let { convertFaNumberToEN(it) }
+
+        if (nationalCodeEn == null) {
             return false
         }
-        if (nationalCode.isEmpty()) {
+        if (nationalCodeEn.isEmpty()) {
             return false
         }
-        if (nationalCode.equals("")){
+        if (nationalCodeEn.equals("")){
             return false
         }
-        if (nationalCode.length != 10) {
+        if (nationalCodeEn.length != 10) {
             return false
         }
-        if (!nationalCode.matches("[0-9]+".toRegex())) {
+        if (!nationalCodeEn.matches("[0-9]+".toRegex())) {
             return false
         }
         for (s in notNationalCode) {
-            if (s.equals(nationalCode, ignoreCase = true)) {
+            if (s.equals(nationalCodeEn, ignoreCase = true)) {
                 return false
             }
         }
-        val nationalCodeWithoutControlDigit = nationalCode.substring(0, nationalCode.length - 1)
-        val controlDigit = nationalCode.substring(nationalCode.length - 1)
+        val nationalCodeWithoutControlDigit = nationalCodeEn.substring(0, nationalCodeEn.length - 1)
+        val controlDigit = nationalCodeEn.substring(nationalCodeEn.length - 1)
         var sum = 0
         var i = 10
         for (c in nationalCodeWithoutControlDigit.toCharArray()) {
