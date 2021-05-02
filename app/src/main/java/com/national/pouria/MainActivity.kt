@@ -79,6 +79,8 @@ class MainActivity : AppCompatActivity() {
                             txt_check.text = "is not valid"
                         }
 
+                    } else{
+                        txt_check.text = ""
                     }
                 }
             }
