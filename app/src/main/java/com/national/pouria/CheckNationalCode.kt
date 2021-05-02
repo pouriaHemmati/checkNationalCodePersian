@@ -2,6 +2,14 @@ package com.national.pouria
 
 class CheckNationalCode {
 
+    private var checkNationalCode: CheckNationalCode? = null
+
+    fun getService(): CheckNationalCode {
+        if (checkNationalCode == null) {
+            checkNationalCode = CheckNationalCode()
+        }
+        return checkNationalCode!!
+    }
 
     private val notNationalCode = arrayOf(
             "0000000000",

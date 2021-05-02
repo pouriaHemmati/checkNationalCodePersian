@@ -1,6 +1,9 @@
 package com.national.pouria
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.EditText
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
 
     val decelerateInterpolator = DecelerateInterpolator()
-
+    var checkNationalCode = CheckNationalCode().getService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +61,28 @@ class MainActivity : AppCompatActivity() {
             viewAnimator.setInterpolator(DecelerateInterpolator()).start()
         }
 
+        // text watcher
+        national_code.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s != null) {
+                    if (s.length == 10){
+                        Log.i("check" , s.toString())
+                        if (checkNationalCode.checkNationalCode(s.toString())){
+                            txt_check.text = "is valid"
+                        } else{
+                            txt_check.text = "is not valid"
+                        }
+
+                    }
+                }
+            }
+        })
     }
 
 
