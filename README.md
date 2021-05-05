@@ -5,7 +5,7 @@
   ```
   var checkNationalCode = CheckNationalCode().getService()
   
-  checkNationalCode.checkNationalCode("your text")
+   var isOk: Boolean = checkNationalCode.checkNationalCode("your text")
   ```
   
   ## Authors
