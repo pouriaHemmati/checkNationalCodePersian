@@ -13,7 +13,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorCompat
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.activity_main.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import java.lang.String
 
@@ -33,11 +33,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_main)
+        setContentView(R.layout.activity_main)
 
 
         btn_done?.let { ViewCompat.animate(it) }
-                ?.scaleY(1f)?.scaleX(1f)
+                ?.scaleY(1f)
+                ?.scaleX(1f)
                 ?.setStartDelay(((BUTTON_DELAY) + 500).toLong())
                 ?.setDuration(500)
                 ?.setInterpolator(decelerateInterpolator)
