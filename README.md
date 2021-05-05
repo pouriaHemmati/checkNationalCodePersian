@@ -21,7 +21,7 @@ allprojects {
   
 ```
 dependencies {
-	        implementation 'com.github.pouriaHemmati:nationalCode:-SNAPSHOT'
+	        implementation 'com.github.pouriaHemmati:nationalCode:1.0.1'
 	}
   ```
   
